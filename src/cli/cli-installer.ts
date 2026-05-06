@@ -108,7 +108,7 @@ export async function runCliInstaller(args: InstallArgs, version: string): Promi
     !config.hasOpencodeZen &&
     !config.hasVercelAiGateway
   ) {
-    printWarning("No model providers configured. Using opencode/big-pickle as fallback.")
+    printWarning("No model providers configured. Using opencode.json default model as fallback.")
   }
 
   console.log(`${SYMBOLS.star} ${color.bold(color.green(isUpdate ? "Configuration updated!" : "Installation complete!"))}`)

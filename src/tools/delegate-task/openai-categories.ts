@@ -89,7 +89,7 @@ Approach:
 </Category_Context>
 
 <Caller_Warning>
-THIS CATEGORY USES A SMALLER/FASTER MODEL (gpt-5.4-mini).
+THIS CATEGORY USES A SMALLER/FASTER MODEL.
 
 The model executing this task is optimized for speed over depth. Your prompt MUST be:
 
@@ -127,20 +127,20 @@ If your prompt lacks this structure, REWRITE IT before delegating.
 export const OPENAI_CATEGORIES: BuiltinCategoryDefinition[] = [
   {
     name: "ultrabrain",
-    config: { model: "openai/gpt-5.5", variant: "xhigh" },
+    config: {},
     description: "Use ONLY for genuinely hard, logic-heavy tasks. Give clear goals only, not step-by-step instructions.",
     promptAppend: ULTRABRAIN_CATEGORY_PROMPT_APPEND,
   },
   {
     name: "deep",
-    config: { model: "openai/gpt-5.5", variant: "medium" },
+    config: {},
     description: "Goal-oriented autonomous problem-solving. Thorough research before action. For hairy problems requiring deep understanding.",
     promptAppend: DEEP_CATEGORY_PROMPT_APPEND,
     resolvePromptAppend: resolveDeepCategoryPromptAppend,
   },
   {
     name: "quick",
-    config: { model: "openai/gpt-5.4-mini" },
+    config: {},
     description: "Trivial tasks - single file changes, typo fixes, simple modifications",
     promptAppend: QUICK_CATEGORY_PROMPT_APPEND,
   },

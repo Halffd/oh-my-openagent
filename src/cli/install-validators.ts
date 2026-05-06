@@ -173,6 +173,7 @@ export function argsToConfig(args: InstallArgs): InstallConfig {
 hasKimiForCoding: args.kimiForCoding === "yes",
     hasOpencodeGo: args.opencodeGo === "yes",
     hasVercelAiGateway: args.vercelAiGateway === "yes",
+    hasNvidia: false,
   }
 }
 

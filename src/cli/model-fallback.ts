@@ -20,9 +20,9 @@ import { transformModelForProvider } from "./provider-model-id-transform"
 
 export type { GeneratedOmoConfig } from "./model-fallback-types"
 
-const ZAI_MODEL = "zai-coding-plan/glm-4.7"
+const ZAI_MODEL = "nvidia/z-ai/glm-5.1"
 
-const ULTIMATE_FALLBACK = "opencode/gpt-5-nano"
+const ULTIMATE_FALLBACK = ZAI_MODEL
 const SCHEMA_URL = "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json"
 
 function toFallbackModelObject(entry: FallbackEntry, provider: string): FallbackModelObject {
@@ -106,7 +106,8 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
     avail.zai ||
     avail.kimiForCoding ||
     avail.opencodeGo ||
-    avail.vercelAiGateway
+    avail.vercelAiGateway ||
+    avail.nvidia
   if (!hasAnyProvider) {
     return {
       $schema: SCHEMA_URL,
@@ -125,44 +126,6 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
   const categories: Record<string, CategoryConfig> = {}
 
   for (const [role, req] of Object.entries(CLI_AGENT_MODEL_REQUIREMENTS)) {
-    if (role === "librarian") {
-      let agentConfig: AgentConfig | undefined
-      if (avail.native.openai) {
-        agentConfig = { model: "openai/gpt-5.4-mini-fast" }
-      } else if (avail.opencodeGo) {
-        agentConfig = { model: "opencode-go/minimax-m2.7" }
-      } else if (avail.zai) {
-        agentConfig = { model: ZAI_MODEL }
-      } else if (avail.vercelAiGateway) {
-        agentConfig = { model: "vercel/minimax/minimax-m2.7" }
-      }
-      if (agentConfig) {
-        agents[role] = attachAllFallbackModels(agentConfig, req.fallbackChain, avail)
-      }
-      continue
-    }
-
-    if (role === "explore") {
-      let agentConfig: AgentConfig
-      if (avail.native.openai) {
-        agentConfig = { model: "openai/gpt-5.4-mini-fast" }
-      } else if (avail.native.claude) {
-        agentConfig = { model: "anthropic/claude-haiku-4-5" }
-      } else if (avail.opencodeZen) {
-        agentConfig = { model: "opencode/claude-haiku-4-5" }
-      } else if (avail.opencodeGo) {
-        agentConfig = { model: "opencode-go/minimax-m2.7" }
-      } else if (avail.copilot) {
-        agentConfig = { model: "github-copilot/gpt-5-mini" }
-      } else if (avail.vercelAiGateway) {
-        agentConfig = { model: "vercel/minimax/minimax-m2.7-highspeed" }
-      } else {
-        agentConfig = { model: "opencode/gpt-5-nano" }
-      }
-      agents[role] = attachAllFallbackModels(agentConfig, req.fallbackChain, avail)
-      continue
-    }
-
     if (role === "sisyphus") {
       const fallbackChain = getSisyphusFallbackChain()
       if (req.requiresAnyModel && !isAnyFallbackEntryAvailable(fallbackChain, avail)) {
@@ -230,5 +193,5 @@ export function generateModelConfig(config: InstallConfig): GeneratedOmoConfig {
 }
 
 export function shouldShowChatGPTOnlyWarning(config: InstallConfig): boolean {
-  return !config.hasClaude && !config.hasGemini && config.hasOpenAI
+  return false
 }

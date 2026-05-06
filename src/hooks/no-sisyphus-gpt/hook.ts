@@ -42,41 +42,15 @@ function getNativeSisyphusGptVariant(model: { providerID: string; modelID: strin
   return chain.find((entry) => entry.model === model.modelID)?.variant
 }
 
-export function createNoSisyphusGptHook(ctx: PluginInput) {
+export function createNoSisyphusGptHook(_ctx: PluginInput) {
   return {
-    "chat.message": async (input: {
+    "chat.message": async (_input: {
       sessionID: string
       agent?: string
       model?: { providerID: string; modelID: string }
-    }, output?: {
+    }, _output?: {
       message?: { agent?: string; [key: string]: unknown }
     }): Promise<void> => {
-      const rawAgent = input.agent ?? getSessionAgent(input.sessionID) ?? ""
-      const agentKey = getAgentConfigKey(rawAgent)
-      const modelID = input.model?.modelID
-
-      if (
-        agentKey === "sisyphus"
-        && input.model
-        && modelID
-        && isGptNativeSisyphusModel(modelID)
-        && output?.message
-        && output.message.variant === undefined
-      ) {
-        const variant = getNativeSisyphusGptVariant(input.model)
-        if (variant !== undefined) {
-          output.message.variant = variant
-        }
-      }
-
-      if (agentKey === "sisyphus" && modelID && isGptModel(modelID) && !isGptNativeSisyphusModel(modelID)) {
-        showToast(ctx, input.sessionID)
-        input.agent = resolveRegisteredAgentName("hephaestus") ?? "hephaestus"
-        if (output?.message) {
-          output.message.agent = resolveRegisteredAgentName("hephaestus") ?? "hephaestus"
-        }
-        updateSessionAgent(input.sessionID, "hephaestus")
-      }
     },
   }
 }
