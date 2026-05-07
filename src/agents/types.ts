@@ -105,7 +105,7 @@ export function isClaudeOpus47Model(model: string): boolean {
  * Kimi K2.x model detection (K2.5 / K2.6 family).
  *
  * Matches model IDs containing any of:
- *   - "kimi" (provider/family signal — kimi-k2.6, moonshotai/Kimi-K2.6, etc.)
+ *   - "kimi" (provider/family signal - kimi-k2.6, moonshotai/Kimi-K2.6, etc.)
  *   - "k2p5" / "k2-p5" / "k2.p5"
  *   - "k2p6" / "k2-p6" / "k2.p6"
  *

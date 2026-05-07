@@ -91,7 +91,7 @@ describe("discoverOAuthServerMetadata", () => {
   })
 
   test("falls back to root well-known URL when resource has a sub-path", () => {
-    // given — resource URL has a /mcp path (e.g. https://mcp.sentry.dev/mcp)
+    // given - resource URL has a /mcp path (e.g. https://mcp.sentry.dev/mcp)
     const resource = "https://mcp.example.com/mcp"
     const prmUrl = new URL("/.well-known/oauth-protected-resource", resource).toString()
     const pathSuffixedAsUrl = "https://mcp.example.com/.well-known/oauth-authorization-server/mcp"

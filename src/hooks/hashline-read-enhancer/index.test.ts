@@ -232,7 +232,7 @@ describe("hashline-read-enhancer", () => {
     //#when
     await hook["tool.execute.after"](input, output)
 
-    //#then — guard should prevent re-reading the file and updating the count
+    //#then - guard should prevent re-reading the file and updating the count
     expect(output.output).toBe("File written successfully. 99 lines written.")
 
     fs.rmSync(tempDir, { recursive: true, force: true })
@@ -259,7 +259,7 @@ describe("hashline-read-enhancer", () => {
   })
 
   it("does not overwrite write tool error output with success message", async () => {
-    //#given — write tool failed, but stale file exists from previous write
+    //#given - write tool failed, but stale file exists from previous write
     const hook = createHashlineReadEnhancerHook(mockCtx(), { hashline_edit: { enabled: true } })
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "hashline-err-"))
     const filePath = path.join(tempDir, "demo.ts")
@@ -274,7 +274,7 @@ describe("hashline-read-enhancer", () => {
     //#when
     await hook["tool.execute.after"](input, output)
 
-    //#then — error output must be preserved, not overwritten with success message
+    //#then - error output must be preserved, not overwritten with success message
     expect(output.output).toContain("Error: EACCES")
     expect(output.output).not.toContain("File written successfully.")
 

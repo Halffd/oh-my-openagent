@@ -102,7 +102,7 @@ export function createStopContinuationGuardHook(
   }): Promise<void> => {
     // Intentionally no-op: stop state should persist across user messages.
     // Previously this cleared the stop on any new user message, but that caused
-    // /stop-continuation to be ineffective — the user's very next message
+    // /stop-continuation to be ineffective - the user's very next message
     // (including normal chat) would re-enable continuation.
     //
     // Stop state is now only cleared by:

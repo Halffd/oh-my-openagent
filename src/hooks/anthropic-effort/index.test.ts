@@ -164,7 +164,7 @@ describe("createAnthropicEffortHook", () => {
       // when
       await hook["chat.params"](input, output)
 
-      // then — github-copilot is a constrained provider, clamps max→high
+      // then - github-copilot is a constrained provider, clamps max→high
       expect(output.options.effort).toBe("high")
       expect(input.message.variant).toBe("high")
     })
@@ -221,7 +221,7 @@ describe("createAnthropicEffortHook", () => {
     })
   })
 
-  describe("#given anthropic OAuth auth (Claude Pro/Max) — regression for #3429", () => {
+  describe("#given anthropic OAuth auth (Claude Pro/Max) - regression for #3429", () => {
     let tempDataDir: string
     const originalXdgDataHome = process.env.XDG_DATA_HOME
 

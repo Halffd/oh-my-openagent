@@ -137,7 +137,7 @@ describe("background-agent spawner agent-not-found fallback", () => {
     await new Promise(resolve => setTimeout(resolve, 50))
 
     //#then
-    // Only one attempt — no retry for non-agent errors
+    // Only one attempt - no retry for non-agent errors
     expect(promptCalls).toHaveLength(1)
     expect(onTaskError).toHaveBeenCalled()
   })

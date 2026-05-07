@@ -372,17 +372,17 @@ describe("todo-continuation-enforcer", () => {
 
   test("should inject for any session with incomplete todos", async () => {
     fakeTimers.restore()
-    //#given — any session, not necessarily main session
+    //#given - any session, not necessarily main session
     const otherSession = "other-session"
 
     const hook = createTodoContinuationEnforcer(createMockPluginInput(), {})
 
-    //#when — session goes idle
+    //#when - session goes idle
     await hook.handler({
       event: { type: "session.idle", properties: { sessionID: otherSession } },
     })
 
-    //#then — continuation injected regardless of session type
+    //#then - continuation injected regardless of session type
     await wait(2500)
     expect(promptCalls.length).toBe(1)
     expect(promptCalls[0].sessionID).toBe(otherSession)
@@ -949,7 +949,7 @@ describe("todo-continuation-enforcer", () => {
     ]})
     const hook = createTodoContinuationEnforcer(mockInput, {})
 
-    //#when — 5 consecutive idle cycles with unchanged todos
+    //#when - 5 consecutive idle cycles with unchanged todos
     await hook.handler({ event: { type: "session.idle", properties: { sessionID } } })
     await fakeTimers.advanceBy(2500, true)
     await fakeTimers.advanceClockBy(CONTINUATION_COOLDOWN_MS)

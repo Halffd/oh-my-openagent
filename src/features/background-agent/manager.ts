@@ -1458,7 +1458,7 @@ The fallback retry session is now created and can be inspected directly.
     }
 
     // Agent-not-found errors are handled by the prompt catch block with agent fallback.
-    // Do not also trigger model fallback retry — that would race with the agent retry.
+    // Do not also trigger model fallback retry - that would race with the agent retry.
     if (isAgentNotFoundError({ message: errorInfo.message } as Error)) {
       log("[background-agent] Skipping session.error fallback for agent-not-found (handled by prompt catch)", {
         taskId: task.id,

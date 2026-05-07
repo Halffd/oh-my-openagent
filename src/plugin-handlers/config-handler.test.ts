@@ -1597,9 +1597,9 @@ describe("disable_omo_env pass-through", () => {
   })
 })
 
-describe("Agent merge priority — project-local overrides global", () => {
+describe("Agent merge priority - project-local overrides global", () => {
   test("project-local Claude agent overrides global Claude agent with same name", async () => {
-    // #given — same agent name in both global (user) and project scopes
+    // #given - same agent name in both global (user) and project scopes
     ;(agentLoader.loadUserAgents as any).mockReturnValue({
       "my-custom-agent": {
         description: "(user) global version",
@@ -1632,14 +1632,14 @@ describe("Agent merge priority — project-local overrides global", () => {
     // #when
     await handler(config)
 
-    // #then — project version wins
+    // #then - project version wins
     const agentConfig = config.agent as Record<string, { description?: string; prompt?: string }>
     expect(agentConfig["my-custom-agent"]?.description).toBe("(project) project version")
     expect(agentConfig["my-custom-agent"]?.prompt).toBe("I am the project agent")
   })
 
   test("opencode project agent overrides opencode global agent with same name", async () => {
-    // #given — same agent name in opencode global vs opencode project
+    // #given - same agent name in opencode global vs opencode project
     ;(agentLoader.loadOpencodeGlobalAgents as any).mockReturnValue({
       "my-custom-agent": {
         description: "(opencode) global version",
@@ -1672,14 +1672,14 @@ describe("Agent merge priority — project-local overrides global", () => {
     // #when
     await handler(config)
 
-    // #then — opencode project version wins over opencode global
+    // #then - opencode project version wins over opencode global
     const agentConfig = config.agent as Record<string, { description?: string; prompt?: string }>
     expect(agentConfig["my-custom-agent"]?.description).toBe("(opencode-project) project version")
     expect(agentConfig["my-custom-agent"]?.prompt).toBe("I am the opencode project agent")
   })
 
   test("project Claude agent overrides opencode global agent with same name", async () => {
-    // #given — project-scope Claude agent vs global-scope opencode agent
+    // #given - project-scope Claude agent vs global-scope opencode agent
     ;(agentLoader.loadOpencodeGlobalAgents as any).mockReturnValue({
       "my-custom-agent": {
         description: "(opencode) global version",
@@ -1712,14 +1712,14 @@ describe("Agent merge priority — project-local overrides global", () => {
     // #when
     await handler(config)
 
-    // #then — project-scope wins over global-scope regardless of format
+    // #then - project-scope wins over global-scope regardless of format
     const agentConfig = config.agent as Record<string, { description?: string; prompt?: string }>
     expect(agentConfig["my-custom-agent"]?.description).toBe("(project) project version")
     expect(agentConfig["my-custom-agent"]?.prompt).toBe("I am the project Claude agent")
   })
 
-  test("plugin agents have lowest priority — overridden by all other sources", async () => {
-    // #given — same agent in plugin, global, and project scopes
+  test("plugin agents have lowest priority - overridden by all other sources", async () => {
+    // #given - same agent in plugin, global, and project scopes
     ;(pluginLoader.loadAllPluginComponents as any).mockResolvedValue({
       commands: {},
       skills: {},
@@ -1760,7 +1760,7 @@ describe("Agent merge priority — project-local overrides global", () => {
     // #when
     await handler(config)
 
-    // #then — user (global) agent overrides plugin agent
+    // #then - user (global) agent overrides plugin agent
     const agentConfig = config.agent as Record<string, { description?: string; prompt?: string }>
     expect(agentConfig["my-custom-agent"]?.description).toBe("(user) global version")
     expect(agentConfig["my-custom-agent"]?.prompt).toBe("I am the user agent")

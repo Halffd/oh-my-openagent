@@ -501,7 +501,7 @@ describe("discoverInstalledPlugins", () => {
         loadPluginManifestOverride: () => null,
       })
 
-      //#then — existing behavior keeps only the first entry; with scope filter it is
+      //#then - existing behavior keeps only the first entry; with scope filter it is
       // (correctly) skipped because the first entry points at a different project.
       expect(discovered.errors).toHaveLength(0)
       expect(discovered.plugins).toHaveLength(0)

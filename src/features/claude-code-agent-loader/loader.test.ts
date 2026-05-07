@@ -191,7 +191,7 @@ describe("claude-code-agent-loader", () => {
   describe("loadUserAgents", () => {
     test("returns empty object when pointed at dir without agents/", () => {
       const root = trackDir(mkdtempSync(join(tmpdir(), "agent-loader-test-")))
-      // Temporarily set env var — best-effort in parallel test runner
+      // Temporarily set env var - best-effort in parallel test runner
       const prev = process.env.CLAUDE_CONFIG_DIR
       try {
         process.env.CLAUDE_CONFIG_DIR = root

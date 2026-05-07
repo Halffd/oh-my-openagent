@@ -9,7 +9,7 @@ import { writeFileAtomically } from "../write-file-atomically"
  *
  * Why this exists (#3263): users who revert an auto-migrated value (e.g.
  * `gpt-5.4` → `gpt-5.3-codex`) and then delete the `_migrations` field from
- * their config would fall into an infinite migration loop — every startup
+ * their config would fall into an infinite migration loop - every startup
  * re-applied the migration because there was no memory of the previous
  * application. The sidecar remembers applied migrations even when the user
  * scrubs the config, and only "resets" when the user explicitly deletes both
@@ -67,7 +67,7 @@ export function readAppliedMigrations(configPath: string): Set<string> {
 /**
  * Persist the given set of applied migration keys to the sidecar next to
  * `configPath`. The sidecar is written atomically. Returns true on success,
- * false if the write failed (the caller can still proceed — the next
+ * false if the write failed (the caller can still proceed - the next
  * startup will re-run the migration, which is idempotent by design).
  */
 export function writeAppliedMigrations(configPath: string, migrations: Set<string>): boolean {
@@ -78,7 +78,7 @@ export function writeAppliedMigrations(configPath: string, migrations: Set<strin
   try {
     // Ensure the parent directory exists in case the config file was created
     // out-of-band. We intentionally do NOT create the sidecar when the migration
-    // set is empty — there is nothing to remember.
+    // set is empty - there is nothing to remember.
     const parentDir = path.dirname(sidecarPath)
     if (!fs.existsSync(parentDir)) {
       fs.mkdirSync(parentDir, { recursive: true })

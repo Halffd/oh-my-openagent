@@ -106,7 +106,7 @@ describe("loadAllPluginComponents", () => {
       const { loadAllPluginComponents } = await import("./loader")
       const result: PluginComponentsResult = await loadAllPluginComponents()
 
-      // then — should attempt to load (may find 0 plugins, but shouldn't early-return)
+      // then - should attempt to load (may find 0 plugins, but shouldn't early-return)
       expect(result).toBeDefined()
       expect(result).toHaveProperty("commands")
       expect(result).toHaveProperty("plugins")
@@ -122,7 +122,7 @@ describe("loadAllPluginComponents", () => {
       const { loadAllPluginComponents } = await import("./loader")
       const result: PluginComponentsResult = await loadAllPluginComponents()
 
-      // then — "yes" is not "true" or "1", should not skip
+      // then - "yes" is not "true" or "1", should not skip
       expect(result).toBeDefined()
       expect(result).toHaveProperty("plugins")
     })

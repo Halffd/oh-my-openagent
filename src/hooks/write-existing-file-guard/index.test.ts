@@ -411,7 +411,7 @@ describe("createWriteExistingFileGuardHook", () => {
     try {
       symlinkSync(targetFile, symlinkPath)
     } catch (error) {
-      // Symlinks not supported in this environment — skip
+      // Symlinks not supported in this environment - skip
       return
     }
 

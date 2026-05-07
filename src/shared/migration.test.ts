@@ -329,7 +329,7 @@ describe("migrateConfigFile", () => {
     try {
       fs.unlinkSync(`${testConfigPath}.migrations.json`)
     } catch {
-      // ignore — sidecar may not exist
+      // ignore - sidecar may not exist
     }
   })
 

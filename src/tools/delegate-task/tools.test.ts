@@ -1452,10 +1452,10 @@ describe("sisyphus-task", () => {
           }
         )
       } catch {
-        // execution may fail due to incomplete mocks — we only care about the title
+        // execution may fail due to incomplete mocks - we only care about the title
       }
 
-      // then — description auto-generated from first 4 words of prompt
+      // then - description auto-generated from first 4 words of prompt
       expect(capturedTitle).toBe("Fix the broken unit")
     })
 
@@ -1541,7 +1541,7 @@ describe("sisyphus-task", () => {
         // execution may fail due to incomplete mocks
       }
 
-      // then — explicit description preserved
+      // then - explicit description preserved
       expect(capturedTitle).toBe("My custom task name")
     })
 
