@@ -22,7 +22,17 @@ Fork of [oh-my-opencode](https://github.com/code-yeongyu/oh-my-openagent) by [@c
 
 In `opencode.json`:
 
-**From GitHub:**
+**npm/bun (fork):**
+
+```json
+{
+  "plugin": [
+    "@Halffd/oh-my-openagent"
+  ]
+}
+```
+
+**GitHub:**
 
 ```json
 {
@@ -32,7 +42,7 @@ In `opencode.json`:
 }
 ```
 
-**From local path:**
+**Local:**
 
 ```json
 {
@@ -42,7 +52,7 @@ In `opencode.json`:
 }
 ```
 
-**From npm (upstream):**
+**npm/bun (upstream):**
 
 ```json
 {
